@@ -5,7 +5,7 @@
 + Works with latest krunker.io version
 + Simple and non-intrusive
 + Should work with lower-end PCs
-+ Works with Violetmonkey
++ Works with Violentmonkey
 - No menu currently
 - Limited feature-set
 
@@ -18,6 +18,6 @@
 - Chams
 - ESP
 
-## Violetmonkey Install
+## Violentmonkey Install
 
-Copy [this script](https://raw.githubusercontent.com/Katistic/Krunker-Hacks/KrunkerPlus/KrunkerPlus.js?token=AIAWJI7Y4Z6OCORRWG6VTOK6CSRYG) into a new script in Violetmonkey.
+Copy [this script](https://raw.githubusercontent.com/Katistic/Krunker-Hacks/KrunkerPlus/KrunkerPlus.js?token=AIAWJI7Y4Z6OCORRWG6VTOK6CSRYG) into a new script in Violentmonkey.
