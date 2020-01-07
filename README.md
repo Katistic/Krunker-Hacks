@@ -8,7 +8,7 @@
 - No menu currently
 - Limited feature-set
 
-! Due to recent patches in krunker.ios code, many aimbot and esp may be buggy.
+! Due to recent patches in krunker.ios code, aimbot and esp may be buggy.
 ```
 
 ## Features
