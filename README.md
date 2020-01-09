@@ -6,18 +6,18 @@
 + Simple and non-intrusive
 + Should work with lower-end PCs
 + Works with Violentmonkey
-- No menu currently
-- Limited feature-set
++ Up to date menu with keybindings
 
-! Due to recent patches in krunker.ios code, aimbot and esp may be buggy.
+- Lacking feature-set
 ```
 
 ## Features
 
 - Aim-Assist
+- Auto-reload
 - Chams
 - ESP
 
 ## Violentmonkey Install
 
-Copy [this script](https://raw.githubusercontent.com/Katistic/Krunker-Hacks/KrunkerPlus/KrunkerPlus.js?token=AIAWJI7Y4Z6OCORRWG6VTOK6CSRYG) into a new script in Violentmonkey.
+Copy [this script](https://raw.githubusercontent.com/Katistic/Krunker-Hacks/KrunkerPlus/KrunkerPlus.js) into a new script in Violentmonkey.
