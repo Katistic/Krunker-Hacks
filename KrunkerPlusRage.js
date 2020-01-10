@@ -108,7 +108,7 @@ const defined = object => typeof object !== "undefined";
 const e = document.getElementById('mapInfoHolder').children[3];//.getElementsByTagName('div')[3];
 const n = document.createElement('form');
 n.setAttribute('style', 'width: 600px; height: 60px; line-height: 90%;')
-n.innerHTML = "<input type=\"checkbox\" name=\"RAGEHACK\" value=\"true\" id=\"RAGEHACK\"><label style=\"color: white; font-size: small;\" for=\"RAGEHACK\"> RAGEHACK (0) </label><br><label style=\"color: white; font-size: small;\"> Hack By Katistic -- Check out the repo <a href=\"http://gestyy.com/w7e82u\" target=\"_blank\">HERE<a></label>"
+n.innerHTML = "<input type=\"checkbox\" name=\"RAGEHACK\" value=\"true\" id=\"RAGEHACK\"><label style=\"color: white; font-size: small;\" for=\"RAGEHACK\"> RAGEHACK (0) </label><br><label style=\"color: white; font-size: small;\"> Hack By Katistic -- Check out the repo <a href=\"http://gestyy.com/w7e9oW\" target=\"_blank\">HERE<a></label>"
 document.getElementById('mapInfoHolder').replaceChild(n, e);
 
 
