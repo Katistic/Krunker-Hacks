@@ -137,7 +137,6 @@ let hook_encode = new Proxy(original_encode, {
                  mouseDownL = _arguments[0].match(/this\['\w+'\]=function\(\){this\['(\w+)'\]=\w*0,this\['(\w+)'\]=\w*0,this\['\w+'\]={}/)[1];
                  mouseDownR = _arguments[0].match(/this\['\w+'\]=function\(\){this\['(\w+)'\]=\w*0,this\['(\w+)'\]=\w*0,this\['\w+'\]={}/)[2];
                  getWorldPosition = _arguments[0].match(/\['camera']\['(\w+)']\(\);if/)[1];
-                 // didShoot = _arguments[0].match(/\w+\['(\w+)']=!0x1,\w+\['burstCount']=0x0/)[1];
                  procInputRegex = _arguments[0].match(/this\['(\w+)']=function\((\w+),(\w+),\w+,\w+\){(this)/);
                  reloadRegex = _arguments[0].match(/{!\w+\['reloadTimer']&&\w+\['(\w+)']\[\w+\['(\w+)']]/);
                  isAuto = _arguments[0].match(/'(\w+)':!0x0,'burst':/)
