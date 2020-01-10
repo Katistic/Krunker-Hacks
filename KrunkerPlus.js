@@ -139,7 +139,6 @@ let hook_encode = new Proxy(original_encode, {
                  getWorldPosition = _arguments[0].match(/\['camera']\['(\w+)']\(\);if/)[1];
                  procInputRegex = _arguments[0].match(/this\['(\w+)']=function\((\w+),(\w+),\w+,\w+\){(this)/);
                  reloadRegex = _arguments[0].match(/{!\w+\['reloadTimer']&&\w+\['(\w+)']\[\w+\['(\w+)']]/);
-                 isAuto = _arguments[0].match(/'(\w+)':!0x0,'burst':/)
 
                  procInputs = procInputRegex[1];
                  ammos = reloadRegex[1];
