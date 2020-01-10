@@ -133,7 +133,6 @@ let hook_encode = new Proxy(original_encode, {
                  didShoot = _arguments[0].match(/0x0,this\['(\w+)']=!0x1,this\['lodActive']=!0x1/)[1];
                  procInputRegex = _arguments[0].match(/this\['(\w+)']=function\((\w+),(\w+),\w+,\w+\){(this)/);
                  reloadRegex = _arguments[0].match(/{!\w+\['reloadTimer']&&\w+\['(\w+)']\[\w+\['(\w+)']]/);
-                 notAuto = _arguments[0].match(/'(\w+)':!0x0,'burst':/)
 
                  procInputs = procInputRegex[1];
                  ammos = reloadRegex[1];
@@ -155,6 +154,7 @@ let hook_encode = new Proxy(original_encode, {
 TextEncoder.prototype.encodeInto = hook_encode;
 conceal_function(original_encode, hook_encode);
 
+const autos = "Assault RifleSubmachine GunMachine GunAkimbo UziFamas"
 const toggles = {
     chams: true,
     ragehack: document.getElementById("RAGEHACK")
@@ -273,6 +273,10 @@ function onTick(me, world, inputs, renderer) {
         return false;
     };
 
+    let isAuto = (gname) => {
+        return autos.includes(gname)
+    }
+
     let isEnemy = function(player) {return !me.team || player.team != me.team};
     let canHit = function(player) {return null == world[canSee](me, player.x3, player.y3 - player.crouchVal * consts.crouchDst, player.z3)};
     let isCloseEnough = function(player) {let distance = getDistance(me, player); return me.weapon.range >= distance && ("Shotgun" != me.weapon.name || distance < 70) && ("Akimbo Uzi" != me.weapon.name || distance < 100);};
@@ -288,7 +292,7 @@ function onTick(me, world, inputs, renderer) {
     if (target) {
         aiming = true;
 
-        if (me.weapon[notAuto] && me[didShoot]) {
+        if (!isAuto(me.weapon.name) && me[didShoot]) {
             inputs[input.shoot] = 0;
         } else if (!me.aimVal) {
             inputs[input.shoot] = 1;
