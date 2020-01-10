@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Krunker 1.9.6 Hack
 // @namespace    http://tampermonkey.net/
-// @version      2.3.5
+// @version      2.3.6
 // @description  Hack for krunker.io 1.9.6
 // @author       OVERHAX/THEGUY3ds + Hrt + ttap + Katistic
 // @icon         https://www.google.com/s2/favicons?domain=krunker.io
