@@ -106,7 +106,6 @@ const defined = object => typeof object !== "undefined";
 
 
 const e = document.getElementById('mapInfoHolder').children[3];//.getElementsByTagName('div')[3];
-console.log(e)
 const n = document.createElement('form');
 n.setAttribute('style', 'width: 600px; height: 60px; line-height: 90%;')
 n.innerHTML = "<input type=\"checkbox\" name=\"Aimassist\" value=\"true\" id=\"Aimassist\" checked><label style=\"color: white; font-size: small;\" for=\"Aimassist\"> AIMASSIST (1) </label><input type=\"checkbox\" name=\"Autoreload\" value=\"true\" id=\"Autoreload\" checked><label style=\"color: white; font-size: small;\" for=\"Autoreload\"> AUTORELOAD (2) </label><input type=\"checkbox\" name=\"Chams\" value=\"true\" id=\"Chams\"><label style=\"color: white; font-size: small;\" for=\"Chams\"> CHAMS (3) </label><input type=\"checkbox\" name=\"ESP\" value=\"true\" id=\"ESP\" checked><label style=\"color: white; font-size: small;\" for=\"ESP\"> ESP (4) </label><br><label style=\"color: white; font-size: small;\"> Hack By Katistic -- Check out the repo <a href=\"https://github.com/Katistic/WheelChairGUI\" target=\"_blank\">HERE<a></label>"
@@ -283,7 +282,6 @@ function onTick(me, world, inputs, renderer) {
 
     // Update-proof autoreload
     if (document.getElementById("ammoVal").innerHTML.split("<")[0] == "0 " && toggles.autoreload.checked) {
-        console.log(document.getElementById("ammoVal").innerHTML.split("<")[0])
         controls.keys[controls.reloadKey] = 1
     } else {
         controls.keys[controls.reloadKey] = 0
