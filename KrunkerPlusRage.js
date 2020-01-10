@@ -309,6 +309,7 @@ function onTick(me, world, inputs, renderer) {
     }
     // silent aim
     inputs[input.xdir] = +(tx % PI2).toFixed(3);
+    inputs[input.ydir] = +(ty % PI2).toFixed(3);
 
     if (!aiming && !isMoving()) {
         inputs[input.ydir] = (+(current % PI2).toFixed(3));
