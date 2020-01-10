@@ -23,4 +23,5 @@
 ## Violentmonkey Install
 
 [Normal] Copy [this script](https://raw.githubusercontent.com/Katistic/Krunker-Hacks/KrunkerPlus/KrunkerPlus.js) into a new script in Violentmonkey.
+
 [Ragehack] Copy [this script](https://raw.githubusercontent.com/Katistic/Krunker-Hacks/KrunkerPlus/KrunkerPlusRage.js) into a new script in Violentmonkey.
