@@ -19,7 +19,7 @@ try {
     document.getElementById("instructions").style.color = "Blue";
     document.getElementById('instructions').innerHTML = "Hack by hrt + ttap + THEGUY3ds + Katistic.";
 } catch {
-    location.reload(true)
+    location.reload(true);
 }
 
 // Full Screen -- https://github.com/THEGUY3ds/KRUNKERPLUS/blob/89e9bd9cae68ea8ac824551b33f2f13e852f9829/KrunkerPlusReworked.js#L46
@@ -37,23 +37,6 @@ function requestFullscreen(element) {
 
 if (document.fullscreenEnabled) {
 	requestFullscreen(document.documentElement);
-};
-
-function read(url) {
-    return new Promise(resolve => {
-        fetch(url).then(res => res.text()).then(res => {
-            return resolve(res);
-        });
-    });
-};
-// end
-
-function read(url) {
-    return new Promise(resolve => {
-        fetch(url).then(res => res.text()).then(res => {
-            return resolve(res);
-        });
-    });
 };
 
 // Aimdot
@@ -108,13 +91,13 @@ const defined = object => typeof object !== "undefined";
 const e = document.getElementById('mapInfoHolder').children[3];//.getElementsByTagName('div')[3];
 const n = document.createElement('form');
 n.setAttribute('style', 'width: 600px; height: 60px; line-height: 90%;')
-n.innerHTML = "<input type=\"checkbox\" name=\"Aimassist\" value=\"true\" id=\"Aimassist\" checked><label style=\"color: white; font-size: small;\" for=\"Aimassist\"> AIMASSIST (1) </label><input type=\"checkbox\" name=\"Autoreload\" value=\"true\" id=\"Autoreload\" checked><label style=\"color: white; font-size: small;\" for=\"Autoreload\"> AUTORELOAD (2) </label><input type=\"checkbox\" name=\"Chams\" value=\"true\" id=\"Chams\"><label style=\"color: white; font-size: small;\" for=\"Chams\"> CHAMS (3) </label><input type=\"checkbox\" name=\"ESP\" value=\"true\" id=\"ESP\" checked><label style=\"color: white; font-size: small;\" for=\"ESP\"> ESP (4) </label><br><label style=\"color: white; font-size: small;\"> Hack By Katistic -- Check out the repo <a href=\"http://gestyy.com/w7e9oW\" target=\"_blank\">HERE<a></label>"
+n.innerHTML = "<input type=\"checkbox\" name=\"Aimassist\" value=\"true\" id=\"Aimassist\" checked><label style=\"color: white; font-size: small;\" for=\"Aimassist\"> AIMASSIST (1) </label><input type=\"checkbox\" name=\"Autoreload\" value=\"true\" id=\"Autoreload\" checked><label style=\"color: white; font-size: small;\" for=\"Autoreload\"> AUTORELOAD (2) </label><input type=\"checkbox\" name=\"Chams\" value=\"true\" id=\"Chams\"><label style=\"color: white; font-size: small;\" for=\"Chams\"> CHAMS (3) </label><input type=\"checkbox\" name=\"ESP\" value=\"true\" id=\"ESP\" checked><label style=\"color: white; font-size: small;\" for=\"ESP\"> ESP (4) </label><br><label style=\"color: white; font-size: small;\"> Hack By Katistic -- Check out the repo <a href=\"http://gestyy.com/w7e9oW\" target=\"_blank\">HERE<a></label>";
 document.getElementById('mapInfoHolder').replaceChild(n, e);
 
 
 // Displace the trash
-const trash = document.getElementById("aHolder")
-trash.setAttribute('style', "position: absolute; bottom:5000px")
+const trash = document.getElementById("aHolder");
+trash.setAttribute('style', "position: absolute; bottom:5000px");
 
 const toggles = {
     aimassist: document.getElementById('Aimassist'),
@@ -196,17 +179,17 @@ function onTick(me, world, inputs, renderer) {
     // keybindings
 
     if (controls.keys[49]) {
-        controls.keys[49] = 0
-        toggles.aimassist.checked = !(toggles.aimassist.checked)
+        controls.keys[49] = 0;
+        toggles.aimassist.checked = !(toggles.aimassist.checked);
     } else if (controls.keys[50]) {
-        controls.keys[50] = 0
-        toggles.autoreload.checked = !(toggles.autoreload.checked)
+        controls.keys[50] = 0;
+        toggles.autoreload.checked = !(toggles.autoreload.checked);
     } else if (controls.keys[51]) {
-        controls.keys[51] = 0
-        toggles.chams.checked = !(toggles.chams.checked)
+        controls.keys[51] = 0;
+        toggles.chams.checked = !(toggles.chams.checked);
     } else if (controls.keys[52]) {
-        controls.keys[52] = 0
-        toggles.esp.checked = !(toggles.esp.checked)
+        controls.keys[52] = 0;
+        toggles.esp.checked = !(toggles.esp.checked);
     }
 
     //FUNCTIONS
@@ -283,7 +266,7 @@ function onTick(me, world, inputs, renderer) {
                 x: target.x + consts.camChaseDst * Math.sin(ydir) * Math.cos(xdir),
                 y: target.y - consts.camChaseDst * Math.sin(xdir),
                 z: target.z + consts.camChaseDst * Math.cos(ydir) * Math.cos(xdir)
-            }
+            };
 
             inputs[input.xdir] = +(xdir % PI2).toFixed(3); // Silent Aim
             inputs[input.ydir] = +(ydir % PI2).toFixed(3);
@@ -296,9 +279,9 @@ function onTick(me, world, inputs, renderer) {
 
     // Update-proof autoreload
     if (document.getElementById("ammoVal").innerHTML.split("<")[0] == "0 " && toggles.autoreload.checked) {
-        controls.keys[controls.reloadKey] = 1
+        controls.keys[controls.reloadKey] = 1;
     } else {
-        controls.keys[controls.reloadKey] = 0
+        controls.keys[controls.reloadKey] = 0;
     }
 
     // Chams and esp
