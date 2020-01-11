@@ -190,10 +190,8 @@ function onTick(me, world, inputs, renderer) {
         "nameOffset": 0.6,
         "ammos": 0x1c,
         "nameOffsetHat": 0.8,
+        "hitBoxPad": 1,
     };
-
-    let inView = (entity) => (null == world[canSee](me, entity.x, entity.y, entity.z)) && (null == world[canSee](renderer.camera[getWorldPosition](), entity.x, entity.y, entity.z, 10));
-    let isFriendly = (entity) => (me && me.team ? me.team : me.spectating ? 0x1 : 0x0) == entity.team;
 
     // keybindings
 
@@ -212,43 +210,61 @@ function onTick(me, world, inputs, renderer) {
     }
 
     //FUNCTIONS
-    let getDistance3D = (fromX, fromY, fromZ, toX, toY, toZ) => {
-        var distX = fromX - toX,
-            distY = fromY - toY,
-            distZ = fromZ - toZ;
-        return Math.sqrt(distX * distX + distY * distY + distZ * distZ);
+    let getDirection = function(a, b, c, d) {
+        return Math.atan2(b - d, a - c);
+    };
+    let getDistance3D = function(a, b, c, d, e, f) {
+        let g = a - d, h = b - e, i = c - f;
+        return Math.sqrt(g * g + h * h + i * i);
+    };
+    let getXDir = function(a, b, c, d, e, f) {
+        let g = Math.abs(b - e), h = getDistance3D(a, b, c, d, e, f);
+        return Math.asin(g / h) * (b > e ? -1 : 1);
     };
 
-    let getDistance = (player1, player2) => {
-        return getDistance3D(player1.x, player1.y, player1.z, player2.x, player2.y, player2.z);
+    let dAngleTo = function(x, y, z) {
+        let ty = normaliseYaw(getDirection(controls.object.position.z, controls.object.position.x, z, x));
+        let tx = getXDir(controls.object.position.x, controls.object.position.y, controls.object.position.z, x, y, z);
+        let oy = normaliseYaw(controls.object.rotation.y);
+        let ox = controls[pchObjc].rotation.x;
+        let dYaw = Math.min(Math.abs(ty - oy), Math.abs(ty - oy - PI2), Math.abs(ty - oy + PI2));
+        let dPitch = tx - ox;
+        return Math.hypot(dYaw, dPitch);
     };
 
-    let getDirection = (fromZ, fromX, toZ, toX) => {
-        return Math.atan2(fromX - toX, fromZ - toZ);
-    };
-
-    let getXDir = (fromX, fromY, fromZ, toX, toY, toZ) => {
-        var dirY = Math.abs(fromY - toY),
-            dist = getDistance3D(fromX, fromY, fromZ, toX, toY, toZ);
-        return Math.asin(dirY / dist) * (fromY > toY ? -1 : 1);
-    }
-
-    let getAngleDist = (start, end) => {
-        return Math.atan2(Math.sin(end - start), Math.cos(start - end));
-    };
-
-    let isEnemy = function(player) {return !me.team || player.team != me.team};
+    let calcAngleTo = function(player) {return dAngleTo(player.x3, player.y3 + consts.playerHeight - (consts.headScale + consts.hitBoxPad) / 2 - player.crouchVal * consts.crouchDst, player.z3);};
+    let calcDistanceTo = function(player) {return getDistance3D(player.x3, player.y3, player.z3, me.x, me.y, me.z)};
+    let isCloseEnough = function(player) {let distance = calcDistanceTo(player); return me.weapon.range >= distance && ("Shotgun" != me.weapon.name || distance < 70) && ("Akimbo Uzi" != me.weapon.name || distance < 100);};
     let canHit = function(player) {return null == world[canSee](me, player.x3, player.y3 - player.crouchVal * consts.crouchDst, player.z3)};
-    let isCloseEnough = function(player) {let distance = getDistance(me, player); return me.weapon.range >= distance && ("Shotgun" != me.weapon.name || distance < 70) && ("Akimbo Uzi" != me.weapon.name || distance < 100);};
-    let calcAngleTo = function(player) {return getAngleDist(player.x3, player.y3 + consts.playerHeight - (consts.headScale + consts.hitBoxPad) / 2 - player.crouchVal * consts.crouchDst, player.z3);};
+    let isEnemy = function(player) {return !me.team || player.team != me.team};
+    let inView = (entity) => (null == world[canSee](me, entity.x, entity.y, entity.z)) && (null == world[canSee](renderer.camera[getWorldPosition](), entity.x, entity.y, entity.z, 10));
+    let isFriendly = (entity) => (me && me.team ? me.team : me.spectating ? 0x1 : 0x0) == entity.team;
+    let normaliseYaw = function(yaw) {return (yaw % PI2 + PI2) % PI2;};
 
     // Targetting
-    let ty = controls.object.rotation.y;
-    let tx = controls[pchObjc].rotation.x;
-    let target = world.players.list.filter(x => {
-        x[cnBSeen] = true;
-        return defined(x[objInstances]) && x[objInstances] && x.active && !x.renderYou && inView(x) && !isFriendly(x)
-    }).sort((p1, p2) => p1[objInstances].position.distanceTo(me) - p2[objInstances].position.distanceTo(me)).shift();
+    let target = null, closestAngle = Infinity;
+    for (let i = 0; me.active && i < players.length; i++) {
+        let e = players[i];
+
+        if (e.name == me.name || !e.active || !e[objInstances] || !isEnemy(e)) {
+            continue;
+        }
+
+        // experimental prediction removed
+        e.x3 = e.x;
+        e.y3 = e.y;
+        e.z3 = e.z;
+
+        if (!isCloseEnough(e) || !canHit(e)) {
+            continue;
+        }
+
+        let angle = calcAngleTo(e);
+        if (angle < closestAngle) {
+            closestAngle = angle;
+            target = e;
+        }
+    }
 
     // Aimbot
     if (target) {
