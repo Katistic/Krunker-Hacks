@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 KrunkerPlusRageNormal.js
 KrunkerPlusNormal.js
+game.js.dumper/*
+krunkerplusoh.js
